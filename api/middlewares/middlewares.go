@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/selvakreditbee/fullstack/api/auth"
-	"github.com/selvakreditbee/fullstack/api/responses"
+	reponses "github.com/selvakreditbee/fullstack/api/responses"
 )
 
 func SetMiddlewareJSON(next http.HandlerFunc) http.HandlerFunc {
@@ -19,7 +19,7 @@ func SetMiddlewareAuthentication(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		err := auth.TokenValid(r)
 		if err != nil {
-			responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
+			reponses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
 			return
 		}
 		next(w, r)
